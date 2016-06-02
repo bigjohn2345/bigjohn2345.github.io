@@ -1,0 +1,109 @@
+// Google Fonts
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
+// Bourbon
+@import 'bourbon';
+
+// Font Variables
+$font-name: 'Open Sans', sans-serif;
+
+// Theme Variables
+$background-color: #FFFFFF;
+$text-color: #333333;
+$text-size: 14px;
+$primary-color: #2ecc71;
+$white-color: #FFFFFF;
+
+* {
+	font-family: $font-name;
+}
+
+html, body {
+	width: 100%; height: 100%;
+	margin: 0; padding: 0;
+	box-sizing: border-box;
+	background: $background-color;
+	font-size: $text-size;
+
+	#root {
+		width: 100%; height: 100%;
+		margin: 0; padding: 0;
+		box-sizing: border-box;
+	}
+}
+
+.container {
+	width: 100%; height: 100%;
+	margin: 0; padding: 0;
+	box-sizing: border-box;
+	@include display(flex);
+  	@include flex-direction(column);
+
+	.header {
+		@include flex-basis(50px);
+		@include display(flex);
+	  	@include flex-direction(row);
+
+		.btn {
+			border: none;
+			@include flex-basis(50px);
+			background: $background-color;
+			color: lighten($text-color, 50%);
+			outline: none;
+			cursor: pointer;
+
+			&:hover {
+				color: lighten($text-color, 70%);
+			}
+
+			&.menu {
+				font-size: 36px;
+				line-height: 0px;
+				font-weight: 100;
+			}
+		}
+	}
+
+	.content {
+		@include flex(1);
+		position: relative;
+
+		.highlight-layer, textarea {
+			width: 100%; height: 100%;
+			position: absolute;
+			top: 0; left: 0;
+			padding: 5px 15px;
+			margin: 0;
+			font-size: 16px; line-height: 20px;
+			border: none;
+			resize: none;
+			box-sizing: border-box;
+			white-space:pre-wrap;
+			word-wrap: break-word;
+		}
+
+		.highlight-layer {
+			z-index: 2;
+			background: transparent;
+			pointer-events: none;
+			overflow-y: auto;
+		}
+
+		textarea {
+			z-index: 1;
+			outline: none;
+			-webkit-text-fill-color: transparent;
+
+			&::-webkit-input-placeholder {
+			    -webkit-text-fill-color: initial;
+			}
+
+			&::selection {
+				background: #FFECB3;
+			}
+
+			&::-moz-selection {
+				background: #FFECB3;
+			}
+		}
+	}
+}
