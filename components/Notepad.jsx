@@ -10,6 +10,19 @@ class Notepad extends React.Component {
         }
     }
 
+    storageAvailable(type) {
+        try {
+            var storage = window[type],
+                x = '__storage_test__';
+            storage.setItem(x, x);
+            storage.removeItem(x);
+            return true;
+        }
+        catch(e) {
+            return false;
+        }
+    }
+
     syncText(element) {
         var self = this;
         element.onkeydown = (e) => {
@@ -41,6 +54,9 @@ class Notepad extends React.Component {
             var textToSync = element.value + newChar
             var codeHighlight = hljs.highlight('markdown', textToSync)
             self.setState({ highlightedHTML: codeHighlight.value })
+            if (storageAvailable('localStorage')) {
+                localStorage.setItem('savedNote', this.editor.value)
+            }
         })
 
         element.addEventListener('scroll', () => {
@@ -53,6 +69,18 @@ class Notepad extends React.Component {
             hljs.initHighlightingOnLoad();
             this.editor.focus()
             this.syncText(this.editor)
+
+            if (storageAvailable('localStorage')) {
+                // Yippee! We can use localStorage awesomeness
+                var savedValue = localStorage.getItem('savedNote')
+                if (savedNote) {
+                    this.editor.value = savedNote;
+                }
+            }
+            else {
+                // Too bad, no localStorage for us
+                console.log('You don\'t have localStorage, nothing can be saved!')
+            }
         }
     }
 
