@@ -73,8 +73,8 @@ class Notepad extends React.Component {
             if (this.storageAvailable('localStorage')) {
                 // Yippee! We can use localStorage awesomeness
                 var savedValue = localStorage.getItem('savedNote')
-                if (savedNote) {
-                    this.editor.value = savedNote;
+                if (savedValue) {
+                    this.editor.value = savedValue;
                 }
             }
             else {
