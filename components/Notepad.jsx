@@ -74,7 +74,8 @@ class Notepad extends React.Component {
                 // Yippee! We can use localStorage awesomeness
                 var savedValue = localStorage.getItem('savedNote')
                 if (savedValue) {
-                    this.editor.value = savedValue;
+                    this.editor.value = savedValue
+                    this.setState({ highlightedHTML: hljs.highlight('markdown', this.editor.value).value })
                 }
             }
             else {
