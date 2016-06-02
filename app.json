@@ -1,0 +1,6 @@
+{
+  "name": "MarktoXYZ",
+  "description": "A markdown-based notepad on the web",
+  "repository": "https://github.com/huytd/notepad",
+  "keywords": ["node", "express", "static", "markdown", "note", "notepad"]
+}
