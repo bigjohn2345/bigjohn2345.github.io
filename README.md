@@ -1,6 +1,6 @@
 # A Markdown-based Notepad
 
-Don't think, just use it: [https://writerm.herokuapp.com/](https://writerm.herokuapp.com/)
+Don't think, just use it: [http://www.markto.xyz/](http://www.markto.xyz/)
 
 ![](screenshot.png)
 
