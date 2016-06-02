@@ -35,3 +35,7 @@ npm run watch
 Then, just write some code and get back to the browser, you don't have to refresh, `webpack-dev-server` will do it for you.
 
 When you satisfied, just commit, push and create [Pull Request](https://github.com/huytd/notepad/pulls) (if you want :P, but yes, please)
+
+## License
+
+Published under MIT License.
