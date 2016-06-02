@@ -23,6 +23,13 @@ class Notepad extends React.Component {
         }
     }
 
+    highlightCode(input) {
+        var codeHighlight = hljs.highlight('markdown', input).value
+        codeHighlight = codeHighlight.replace(/(\[ \] \w+.*)/g, '<span class="marked-list">$1</span>')
+        codeHighlight = codeHighlight.replace(/(\[x\] \w+.*)/g, '<span class="marked-list checked">$1</span>')
+        return codeHighlight
+    }
+
     syncText(element) {
         var self = this;
         element.onkeydown = (e) => {
@@ -52,8 +59,7 @@ class Notepad extends React.Component {
             var charCode = (typeof e.which == "number") ? e.which : e.keyCode;
             var newChar = String.fromCharCode(charCode);
             var textToSync = element.value + newChar
-            var codeHighlight = hljs.highlight('markdown', textToSync)
-            self.setState({ highlightedHTML: codeHighlight.value })
+            self.setState({ highlightedHTML: this.highlightCode(textToSync) })
             if (self.storageAvailable('localStorage')) {
                 localStorage.setItem('savedNote', this.editor.value)
             }
@@ -75,7 +81,7 @@ class Notepad extends React.Component {
                 var savedValue = localStorage.getItem('savedNote')
                 if (savedValue) {
                     this.editor.value = savedValue
-                    this.setState({ highlightedHTML: hljs.highlight('markdown', this.editor.value).value })
+                    this.setState({ highlightedHTML: this.highlightCode(this.editor.value) })
                 }
             }
             else {

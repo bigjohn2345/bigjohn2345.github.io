@@ -76,3 +76,11 @@
 .hljs-strong {
   font-weight: bold;
 }
+
+.marked-list {
+  color: #8959a8;
+
+  &.checked {
+    text-decoration: line-through;
+  }
+}
