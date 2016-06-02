@@ -54,7 +54,7 @@ class Notepad extends React.Component {
             var textToSync = element.value + newChar
             var codeHighlight = hljs.highlight('markdown', textToSync)
             self.setState({ highlightedHTML: codeHighlight.value })
-            if (storageAvailable('localStorage')) {
+            if (self.storageAvailable('localStorage')) {
                 localStorage.setItem('savedNote', this.editor.value)
             }
         })
@@ -70,7 +70,7 @@ class Notepad extends React.Component {
             this.editor.focus()
             this.syncText(this.editor)
 
-            if (storageAvailable('localStorage')) {
+            if (this.storageAvailable('localStorage')) {
                 // Yippee! We can use localStorage awesomeness
                 var savedValue = localStorage.getItem('savedNote')
                 if (savedNote) {
