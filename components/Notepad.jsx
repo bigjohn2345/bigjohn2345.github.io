@@ -62,7 +62,7 @@ class Notepad extends React.Component {
                 var lines = textToSync.split("\n");
                 var previousLine = lines[lines.length - 2];
                 console.log("previous", previousLine);
-                var previousNumber = parseInt(previousLine.match(/(\d+)\. \w+/g));
+                var previousNumber = parseInt(previousLine.match(/(\d+)\. [\[|\w]+/g));
                 if (!isNaN(previousNumber)) {
                     lines[lines.length - 1] = (previousNumber + 1) + ". "
                 }
