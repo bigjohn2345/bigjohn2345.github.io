@@ -62,6 +62,8 @@ class Notepad extends React.Component {
                 var lines = textToSync.split("\n");
                 var previousLine = lines[lines.length - 2];
                 console.log("previous", previousLine);
+
+                // Numbered list
                 var previousNumber = parseInt(previousLine.match(/(\d+)\. [\[|\w]+/g));
                 if (!isNaN(previousNumber)) {
                     lines[lines.length - 1] = (previousNumber + 1) + ". "
@@ -70,6 +72,17 @@ class Notepad extends React.Component {
                 if (lines[lines.length - 2].match(/(\d+)\. $/g)) {
                     lines[lines.length - 2] = ""
                 }
+
+                // Un-ordered list
+                if (previousLine.match(/- [\[|\w]+/g)) {
+                    lines[lines.length - 1] = "- "
+                }
+                // Exit the bullet list
+                if (lines[lines.length - 2].match(/- $/g)) {
+                    lines[lines.length - 2] = ""
+                }
+
+                // Join all the lines together (again)
                 textToSync = lines.join("\n")
                 element.value = textToSync
             }
