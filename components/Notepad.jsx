@@ -48,20 +48,34 @@ class Notepad extends React.Component {
                 // prevent the focus lose
                 return false
             }
-
-            if (e.keyCode === 13) {
+            var kCode = e.which || e.keyCode;
+            if (kCode === 13) {
+                console.log(element.value)
                 self.editorHighlight.scrollTop = element.scrollTop;
             }
         }
 
         element.addEventListener('input', (e) => {
             // sync text
-            var charCode = (typeof e.which == "number") ? e.which : e.keyCode;
-            var newChar = String.fromCharCode(charCode);
-            var textToSync = element.value + newChar
+            var textToSync = e.target.value
+            if (textToSync[textToSync.length - 1] == "\n") {
+                var lines = textToSync.split("\n");
+                var previousLine = lines[lines.length - 2];
+                console.log("previous", previousLine);
+                var previousNumber = parseInt(previousLine.match(/(\d+)\. \w+/g));
+                if (!isNaN(previousNumber)) {
+                    lines[lines.length - 1] = (previousNumber + 1) + ". "
+                }
+                // Exit the bullet list
+                if (lines[lines.length - 2].match(/(\d+)\. $/g)) {
+                    lines[lines.length - 2] = ""
+                }
+                textToSync = lines.join("\n")
+                element.value = textToSync
+            }
             self.setState({ highlightedHTML: this.highlightCode(textToSync) })
             if (self.storageAvailable('localStorage')) {
-                localStorage.setItem('savedNote', this.editor.value)
+                localStorage.setItem('savedNote', element.value)
             }
         })
 
