@@ -1,7 +1,14 @@
+// Icon font
+@import url(http://weloveiconfonts.com/api/?family=entypo);
 // Google Fonts
 @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400italic,700,700italic&subset=latin,latin-ext);
 // Bourbon
 @import 'bourbon';
+
+/* entypo */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
 
 // Font Variables
 $font-name: 'Ubuntu Mono', sans-serif;

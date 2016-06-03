@@ -2,12 +2,13 @@
   "name": "protopen",
   "version": "1.0.0",
   "description": "It's like codepen.io but not codepen.io",
-  "main": "index.js",
+  "main": "desktop.js",
   "scripts": {
     "watch": "webpack-dev-server --inline --port 3000",
     "start": "node app.js",
     "build": "NODE_ENV=production webpack -p",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build",
+    "app": "electron ."
   },
   "author": "Huy",
   "license": "MIT",
