@@ -8,6 +8,12 @@ class Header extends React.Component {
       })
     }
 
+    componentDidMount() {
+      if (!this.props.db.key) {
+        this.showConfig();
+      }
+    }
+
     render() {
         return (
             <div className="header">

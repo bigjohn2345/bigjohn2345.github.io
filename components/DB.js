@@ -17,9 +17,16 @@ const DBReducer = (state = NoteDefault, action) => {
         ...state,
         note: action.note
       };
-    case 'SHARE_NOTE':
-      console.log('Publishing notes');
-      return NoteDefault;
+    case 'SHOW_SHARE':
+      return {
+        ...state,
+        showPublish: true
+      };
+    case 'HIDE_SHARE':
+      return {
+        ...state,
+        showPublish: false
+      };
     case 'SET_CONFIG':
       localStorage.setItem('key', action.key);
       return {

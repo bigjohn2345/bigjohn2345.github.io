@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 class Share extends React.Component {
     onShareClick() {
       this.props.dispatch({ 
-        type: 'SHARE_NOTE'
+        type: 'SHOW_SHARE'
       });
     }
 

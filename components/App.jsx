@@ -4,6 +4,7 @@ import Header from './Header'
 import Notepad from './Notepad'
 import Share from './Share'
 import Config from './Config'
+import Publish from './Publish'
 
 class App extends React.Component {
     render() {
@@ -13,6 +14,7 @@ class App extends React.Component {
                 <Notepad />
                 <Share />
                 <Config />
+                <Publish />
             </div>
         )
     }
