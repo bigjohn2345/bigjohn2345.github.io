@@ -17,8 +17,9 @@ $font-name: 'Ubuntu Mono', sans-serif;
 $background-color: #FFFFFF;
 $text-color: #333333;
 $text-size: 14px;
-$primary-color: #2ecc71;
+$primary-color: #3498db;
 $white-color: #FFFFFF;
+$share-button-size: 50px;
 
 * {
 	font-family: $font-name;
@@ -42,6 +43,7 @@ html, body {
 	width: 100%; height: 100%;
 	margin: 0; padding: 0;
 	box-sizing: border-box;
+  position: relative;
 	@include display(flex);
   	@include flex-direction(column);
 
@@ -98,6 +100,7 @@ html, body {
 		textarea {
 			z-index: 1;
 			outline: none;
+      tab-size: 2;
 			-webkit-text-fill-color: transparent;
 
 			&::-webkit-input-placeholder {
@@ -113,4 +116,27 @@ html, body {
 			}
 		}
 	}
+
+  .share {
+    border: none;
+    position: absolute;
+    display: block;
+    bottom: 10px; right: 10px;
+    width: $share-button-size; height: $share-button-size;
+    background: $primary-color;
+    border-radius: $share-button-size / 2;
+    z-index: 999;
+    opacity: 0.2;
+    transition: 0.5s all;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1.0;
+    }
+
+    span {
+      color: #FFF;
+      font-size: 20px;
+    }
+  }
 }

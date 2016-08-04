@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import hljs from 'highlight.js'
+import { connect } from 'react-redux'
 
 class Notepad extends React.Component {
     constructor() {
@@ -87,9 +88,10 @@ class Notepad extends React.Component {
                 element.value = textToSync
             }
             self.setState({ highlightedHTML: this.highlightCode(textToSync) })
-            if (self.storageAvailable('localStorage')) {
-                localStorage.setItem('savedNote', element.value)
-            }
+            self.props.dispatch({ 
+              type: 'SAVE_NOTE',
+              note: element.value
+            });
         })
 
         element.addEventListener('scroll', () => {
@@ -100,16 +102,13 @@ class Notepad extends React.Component {
     componentDidMount() {
         if (this.editor != null) {
             hljs.initHighlightingOnLoad();
-            this.editor.focus()
-            this.syncText(this.editor)
+            this.editor.focus();
+            this.syncText(this.editor);
 
-            if (this.storageAvailable('localStorage')) {
-                // Yippee! We can use localStorage awesomeness
-                var savedValue = localStorage.getItem('savedNote')
-                if (savedValue) {
-                    this.editor.value = savedValue
-                    this.setState({ highlightedHTML: this.highlightCode(this.editor.value) })
-                }
+            var savedValue = this.props.db.note;
+            if (savedValue) {
+              this.editor.value = savedValue
+                this.setState({ highlightedHTML: this.highlightCode(this.editor.value) })
             }
             else {
                 // Too bad, no localStorage for us
@@ -128,4 +127,4 @@ class Notepad extends React.Component {
     }
 }
 
-export default Notepad
+export default connect( ( state => ({ db: state }) ) )(Notepad)
