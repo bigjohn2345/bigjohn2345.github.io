@@ -1,22 +1,21 @@
 import React from 'react'
-import { Provider } from 'react-redux'
-import DB from './DB'
+import { connect } from 'react-redux'
 import Header from './Header'
 import Notepad from './Notepad'
 import Share from './Share'
+import Config from './Config'
 
 class App extends React.Component {
     render() {
         return (
-            <Provider store={DB}>
             <div className="container">
                 <Header title="Noteit" />
                 <Notepad />
                 <Share />
+                <Config />
             </div>
-            </Provider>
         )
     }
 }
 
-export default App
+export default connect( state => ({ db: state }) )(App)

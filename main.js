@@ -6,9 +6,13 @@ import './scss/tomorrow.scss'
 /* Main program */
 import React from 'react'
 import { render } from 'react-dom'
+import { Provider } from 'react-redux'
 import App from './components/App'
+import DB from './components/DB'
 
 render(
-	<App/>,
-	document.getElementById('root')
+  <Provider store={DB}>
+    <App/>
+  </Provider>,
+  document.getElementById('root')
 )
