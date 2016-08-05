@@ -2,6 +2,29 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 class Publish extends React.Component {
+  showError() {
+    var self = this;
+    self.cancelClick();
+    self.props.dispatch({ 
+      type: 'SHOW_MSG',
+      msg: 'Sorry! There are some unknown error! Can\'t submit your post right now. But I bet it\'s not my bug! You better check it yourself!'
+    });
+  }
+
+  draftClick() {
+    this.submit();
+  }
+
+  publishClick() {
+    this.submit('published');
+  }
+
+  cancelClick() {
+    this.props.dispatch({
+      type: 'HIDE_SHARE'
+    });
+  }
+
   submit(mode = 'draft') {
     var self = this;
     fetch("http://kipalog.com/api/v1/post", {
@@ -20,21 +43,13 @@ class Publish extends React.Component {
       },
       mode: "cors"
     }).then(function(data) { 
-      self.cancelClick();
-    });
-  }
-
-  draftClick() {
-    this.submit();
-  }
-
-  publishClick() {
-    this.submit('published');
-  }
-
-  cancelClick() {
-    this.props.dispatch({
-      type: 'HIDE_SHARE'
+      if (data.status != 200) {
+        self.showError();
+      } else {
+        self.cancelClick();
+      }
+    }).catch(function(err) { 
+      self.showError();
     });
   }
 

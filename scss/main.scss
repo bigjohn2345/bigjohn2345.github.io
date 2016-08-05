@@ -202,6 +202,40 @@ html, body {
     }
   }
 
+  .message-box {
+    padding: 20px;
+    background: #e74c3c;
+    box-shadow: 0 1px 50px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e74c3c;
+    color: #FFF;
+    border-radius: 3px;
+    z-index: 9999;
+    width: 400px; height: 100px;
+    position: absolute;
+    top: 50%; left: 50%;
+    margin-top: -50px; margin-left: -200px;
+    transition: 0.4s all;
+    transform: translateY(-9999px);
+    opacity: 0;
+
+    &.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    p {
+      padding: 0 0 20px 0;
+      margin: 0;
+      height: 50px;
+      font-size: 16px;
+    }
+
+    .btn {
+      background: #FFF;
+      color: #e74c3c;
+    }
+  }
+
   .share {
     border: none;
     position: absolute;

@@ -6,7 +6,8 @@ let NoteDefault = {
   note: localStorage.getItem('note'),
   key: localStorage.getItem('key'),
   showConfig: false,
-  showPublish: false
+  showPublish: false,
+  message: ''
 }
 
 const DBReducer = (state = NoteDefault, action) => {
@@ -43,6 +44,16 @@ const DBReducer = (state = NoteDefault, action) => {
       return {
         ...state,
         showConfig: false
+      };
+    case 'SHOW_MSG':
+      return {
+        ...state,
+        message: action.msg
+      };
+    case 'HIDE_MSG':
+      return {
+        ...state,
+        message: ''
       };
     default:
       return state;
