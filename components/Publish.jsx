@@ -7,16 +7,16 @@ class Publish extends React.Component {
     var self = this;
     request.post('http://kipalog.com/api/v1/post')
       .set('X-Kipalog-Token', self.props.db.key) 
-      .send({
+      .send(JSON.stringify({
         title: document.getElementById('txtTitle').value,
         tag: document.getElementById('txtTags').value,
         status: mode,
         content: self.props.db.note
-      })
-    .then(function(result) {
-      console.log(result);
-      self.cancelClick();
-    });
+      }))
+      .end(function(result) {
+        console.log(result);
+        self.cancelClick();
+      });
   }
 
   draftClick() {
