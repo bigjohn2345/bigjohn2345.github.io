@@ -1,20 +1,25 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import request from 'superagent'
 
 class Publish extends React.Component {
   submit(mode = 'draft') {
     var self = this;
-    request.post('http://kipalog.com/api/v1/post')
-      .set('X-Kipalog-Token', self.props.db.key) 
-      .send({
+    fetch("http://kipalog.com/api/v1/post", {
+      method: "POST",
+      body: JSON.stringify({
         title: document.getElementById('txtTitle').value,
         tag: document.getElementById('txtTags').value,
         status: mode,
         content: self.props.db.note
-      })
-    .then(function(result) {
-      console.log(result);
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        "X-Kipalog-Token": self.props.db.key,
+        "Access-Control-Request-Headers": "*",
+        //"Access-Control-Allow-Origin": "*"
+      },
+      mode: "cors"
+    }).then(function(data) { 
       self.cancelClick();
     });
   }
