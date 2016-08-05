@@ -16,7 +16,7 @@ class Publish extends React.Component {
         "Content-Type": "application/json",
         "X-Kipalog-Token": self.props.db.key,
         "Access-Control-Request-Headers": "*",
-        //"Access-Control-Allow-Origin": "*"
+        "Access-Control-Allow-Origin": "*"
       },
       mode: "cors"
     }).then(function(data) { 
