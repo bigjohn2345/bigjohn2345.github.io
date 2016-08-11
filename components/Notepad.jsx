@@ -49,11 +49,10 @@ class Notepad extends React.Component {
                 // prevent the focus lose
                 return false
             }
-            var kCode = e.which || e.keyCode;
-            if (kCode === 13) {
-                console.log(element.value)
-                self.editorHighlight.scrollTop = element.scrollTop;
-            }
+            var limit = Math.max( document.body.scrollHeight, document.body.offsetHeight, 
+                   document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );
+            self.editorHighlight.scrollTop = limit;
+            element.scrollTop = limit;
         }
 
         element.addEventListener('input', (e) => {
