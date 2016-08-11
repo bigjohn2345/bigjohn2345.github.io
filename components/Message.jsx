@@ -9,7 +9,7 @@ class Message extends React.Component {
     }
 
     render() {
-        let messageClass = "message-box " + (this.props.db.message.length ? "show" : "");
+        let messageClass = "message-box " + (this.props.db.message.length ? "show" : "") + (this.props.db.info ? "info" : "");
         return (
             <div className={messageClass}>
               <p>{this.props.db.message}</p>

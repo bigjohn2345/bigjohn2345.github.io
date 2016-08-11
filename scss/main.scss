@@ -218,6 +218,14 @@ html, body {
     transform: translateY(-9999px);
     opacity: 0;
 
+    &.info {
+      background: #2ecc71;
+
+      .btn {
+        color: #27ae60;
+      }
+    }
+
     &.show {
       transform: translateY(0);
       opacity: 1;

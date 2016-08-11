@@ -11,6 +11,16 @@ class Publish extends React.Component {
     });
   }
 
+  showSuccess() {
+    var self = this;
+    self.cancelClick();
+    self.props.dispatch({ 
+      type: 'SHOW_MSG',
+      msg: 'Congratulation! Your post has been submitted!',
+      info: true
+    });
+  }
+
   draftClick() {
     this.submit();
   }
@@ -46,7 +56,7 @@ class Publish extends React.Component {
       if (data.status != 200) {
         self.showError();
       } else {
-        self.cancelClick();
+        self.showSuccess();
       }
     }).catch(function(err) { 
       self.showError();
